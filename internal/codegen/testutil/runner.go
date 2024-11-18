@@ -65,6 +65,26 @@ type e2eTestInfo struct {
 	Output string
 }
 
+// GetFileFromGenerationResult returns the contents of an output file from a GenerationResult.
+func GetFileFromGenerationResult(t *testing.T, res *GenerationResult, path string) string {
+	t.Helper()
+
+	for _, file := range res.Resp.File {
+		if file.GetName() == path {
+			return file.GetContent()
+		}
+	}
+
+	t.Log("File not found:", path)
+	t.Log("Available files:")
+	for _, file := range res.Resp.File {
+		t.Log("-", file.GetName())
+	}
+	t.Fail()
+
+	return ""
+}
+
 func RunTestInE2ERunner(t *testing.T, res *GenerationResult, testCode string) {
 	t.Helper()
 
