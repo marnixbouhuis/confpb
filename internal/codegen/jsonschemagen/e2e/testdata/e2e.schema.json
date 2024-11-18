@@ -1,0 +1,1848 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "testgen.E2E": {
+            "title": "testgen.E2E",
+            "description": "",
+            "deprecated": false,
+            "additionalProperties": false,
+            "properties": {
+                "boolField": {
+                    "title": "testgen.E2E.bool_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "boolean"
+                    ]
+                },
+                "boolFieldDeprecated": {
+                    "title": "testgen.E2E.bool_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "boolean"
+                    ]
+                },
+                "boolFieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.bool_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "bytesField": {
+                    "title": "testgen.E2E.bytes_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "string"
+                    ],
+                    "contentEncoding": "base64"
+                },
+                "bytesFieldDeprecated": {
+                    "title": "testgen.E2E.bytes_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "string"
+                    ],
+                    "contentEncoding": "base64"
+                },
+                "bytesFieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.bytes_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ],
+                        "contentEncoding": "base64"
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "doubleField": {
+                    "title": "testgen.E2E.double_field",
+                    "description": "// Some comment for double field\n",
+                    "deprecated": false,
+                    "type": [
+                        "number"
+                    ],
+                    "maximum": 1.7976931348623157e+308,
+                    "minimum": 5e-324
+                },
+                "doubleFieldDeprecated": {
+                    "title": "testgen.E2E.double_field_deprecated",
+                    "description": "// Some comment for deprecated double field\n",
+                    "deprecated": true,
+                    "type": [
+                        "number"
+                    ],
+                    "maximum": 1.7976931348623157e+308,
+                    "minimum": 5e-324
+                },
+                "doubleFieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.double_field_repeated",
+                        "description": "// Some comment for repeated double field\n",
+                        "deprecated": false,
+                        "type": [
+                            "number"
+                        ],
+                        "maximum": 1.7976931348623157e+308,
+                        "minimum": 5e-324
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "duration": {
+                    "title": "testgen.E2E.duration",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "string"
+                    ],
+                    "pattern": "^-?([0-9]*[.])?[0-9]+(s)$"
+                },
+                "durationDeprecated": {
+                    "title": "testgen.E2E.duration_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "string"
+                    ],
+                    "pattern": "^-?([0-9]*[.])?[0-9]+(s)$"
+                },
+                "durationRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.duration_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ],
+                        "pattern": "^-?([0-9]*[.])?[0-9]+(s)$"
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "enum": {
+                    "title": "testgen.E2E.enum",
+                    "description": "",
+                    "deprecated": false,
+                    "oneOf": [
+                        {
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "const": "ENUM_UNSPECIFIED"
+                        },
+                        {
+                            "deprecated": true,
+                            "type": [
+                                "string"
+                            ],
+                            "const": "ENUM_ONE"
+                        },
+                        {
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "const": "ENUM_TWO"
+                        }
+                    ]
+                },
+                "enumDeprecated": {
+                    "title": "testgen.E2E.enum_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "oneOf": [
+                        {
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "const": "ENUM_UNSPECIFIED"
+                        },
+                        {
+                            "deprecated": true,
+                            "type": [
+                                "string"
+                            ],
+                            "const": "ENUM_ONE"
+                        },
+                        {
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "const": "ENUM_TWO"
+                        }
+                    ]
+                },
+                "enumRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.enum_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "oneOf": [
+                            {
+                                "deprecated": false,
+                                "type": [
+                                    "string"
+                                ],
+                                "const": "ENUM_UNSPECIFIED"
+                            },
+                            {
+                                "deprecated": true,
+                                "type": [
+                                    "string"
+                                ],
+                                "const": "ENUM_ONE"
+                            },
+                            {
+                                "deprecated": false,
+                                "type": [
+                                    "string"
+                                ],
+                                "const": "ENUM_TWO"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "fixed32Field": {
+                    "title": "testgen.E2E.fixed32_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 4294967295,
+                    "minimum": 0
+                },
+                "fixed32FieldDeprecated": {
+                    "title": "testgen.E2E.fixed32_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 4294967295,
+                    "minimum": 0
+                },
+                "fixed32FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.fixed32_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 4294967295,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "fixed64Field": {
+                    "title": "testgen.E2E.fixed64_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 18446744073709552000,
+                    "minimum": 0
+                },
+                "fixed64FieldDeprecated": {
+                    "title": "testgen.E2E.fixed64_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 18446744073709552000,
+                    "minimum": 0
+                },
+                "fixed64FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.fixed64_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 18446744073709552000,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "floatField": {
+                    "title": "testgen.E2E.float_field",
+                    "description": "// Some comment for float field\n",
+                    "deprecated": false,
+                    "type": [
+                        "number"
+                    ],
+                    "maximum": 3.4028234663852886e+38,
+                    "minimum": 1.401298464324817e-45
+                },
+                "floatFieldDeprecated": {
+                    "title": "testgen.E2E.float_field_deprecated",
+                    "description": "// Some comment for deprecated float field\n",
+                    "deprecated": true,
+                    "type": [
+                        "number"
+                    ],
+                    "maximum": 3.4028234663852886e+38,
+                    "minimum": 1.401298464324817e-45
+                },
+                "floatFieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.float_field_repeated",
+                        "description": "// Some comment for repeated float field\n",
+                        "deprecated": false,
+                        "type": [
+                            "number"
+                        ],
+                        "maximum": 3.4028234663852886e+38,
+                        "minimum": 1.401298464324817e-45
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "int32Field": {
+                    "title": "testgen.E2E.int32_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 2147483647,
+                    "minimum": -2147483648
+                },
+                "int32FieldDeprecated": {
+                    "title": "testgen.E2E.int32_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 2147483647,
+                    "minimum": -2147483648
+                },
+                "int32FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.int32_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "int64Field": {
+                    "title": "testgen.E2E.int64_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 9223372036854776000,
+                    "minimum": -9223372036854776000
+                },
+                "int64FieldDeprecated": {
+                    "title": "testgen.E2E.int64_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 9223372036854776000,
+                    "minimum": -9223372036854776000
+                },
+                "int64FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.int64_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 9223372036854776000,
+                        "minimum": -9223372036854776000
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "mapBoolString": {
+                    "title": "testgen.E2E.map_bool_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapBoolStringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^(true|false)$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapFixed32String": {
+                    "title": "testgen.E2E.map_fixed32_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapFixed32StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^([0-9]|[1-9][0-9]{1,9})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapFixed64String": {
+                    "title": "testgen.E2E.map_fixed64_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapFixed64StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^([0-9]|[1-9][0-9]{1,19})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapInt32String": {
+                    "title": "testgen.E2E.map_int32_string",
+                    "description": "// All possible map key types\n",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapInt32StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^-?([0-9]|[1-9][0-9]{1,9})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapInt64String": {
+                    "title": "testgen.E2E.map_int64_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapInt64StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^-?([0-9]|[1-9][0-9]{1,19})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapSfixed32String": {
+                    "title": "testgen.E2E.map_sfixed32_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapSfixed32StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^-?([0-9]|[1-9][0-9]{1,9})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapSfixed64String": {
+                    "title": "testgen.E2E.map_sfixed64_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapSfixed64StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^-?([0-9]|[1-9][0-9]{1,19})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapSint32String": {
+                    "title": "testgen.E2E.map_sint32_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapSint32StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^-?([0-9]|[1-9][0-9]{1,9})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapSint64String": {
+                    "title": "testgen.E2E.map_sint64_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapSint64StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^-?([0-9]|[1-9][0-9]{1,19})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringBool": {
+                    "title": "testgen.E2E.map_string_bool",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringBoolEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringBytes": {
+                    "title": "testgen.E2E.map_string_bytes",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringBytesEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ],
+                        "contentEncoding": "base64"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringDouble": {
+                    "title": "testgen.E2E.map_string_double",
+                    "description": "// All possible map value types\n",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringDoubleEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "number"
+                        ],
+                        "maximum": 1.7976931348623157e+308,
+                        "minimum": 5e-324
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringEnum": {
+                    "title": "testgen.E2E.map_string_enum",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringEnumEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "oneOf": [
+                            {
+                                "deprecated": false,
+                                "type": [
+                                    "string"
+                                ],
+                                "const": "ENUM_UNSPECIFIED"
+                            },
+                            {
+                                "deprecated": true,
+                                "type": [
+                                    "string"
+                                ],
+                                "const": "ENUM_ONE"
+                            },
+                            {
+                                "deprecated": false,
+                                "type": [
+                                    "string"
+                                ],
+                                "const": "ENUM_TWO"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringFixed32": {
+                    "title": "testgen.E2E.map_string_fixed32",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringFixed32Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 4294967295,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringFixed64": {
+                    "title": "testgen.E2E.map_string_fixed64",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringFixed64Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 18446744073709552000,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringFloat": {
+                    "title": "testgen.E2E.map_string_float",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringFloatEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "number"
+                        ],
+                        "maximum": 3.4028234663852886e+38,
+                        "minimum": 1.401298464324817e-45
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringInt32": {
+                    "title": "testgen.E2E.map_string_int32",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringInt32Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringInt64": {
+                    "title": "testgen.E2E.map_string_int64",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringInt64Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 9223372036854776000,
+                        "minimum": -9223372036854776000
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringMessage": {
+                    "title": "testgen.E2E.map_string_message",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringMessageEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/testgen.E2E.SubMessage"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringSfixed32": {
+                    "title": "testgen.E2E.map_string_sfixed32",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringSfixed32Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringSfixed64": {
+                    "title": "testgen.E2E.map_string_sfixed64",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringSfixed64Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 9223372036854776000,
+                        "minimum": -9223372036854776000
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringSint32": {
+                    "title": "testgen.E2E.map_string_sint32",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringSint32Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringSint64": {
+                    "title": "testgen.E2E.map_string_sint64",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringSint64Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 9223372036854776000,
+                        "minimum": -9223372036854776000
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringString": {
+                    "title": "testgen.E2E.map_string_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringStringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringUint32": {
+                    "title": "testgen.E2E.map_string_uint32",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringUint32Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 4294967295,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapStringUint64": {
+                    "title": "testgen.E2E.map_string_uint64",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapStringUint64Entry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 18446744073709552000,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapUint32String": {
+                    "title": "testgen.E2E.map_uint32_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapUint32StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^([0-9]|[1-9][0-9]{1,9})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "mapUint64String": {
+                    "title": "testgen.E2E.map_uint64_string",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": {
+                        "title": "testgen.E2E.MapUint64StringEntry.value",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "propertyNames": {
+                        "pattern": "^([0-9]|[1-9][0-9]{1,19})$"
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                "recursive": {
+                    "title": "testgen.E2E.recursive",
+                    "description": "",
+                    "deprecated": false,
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/testgen.E2E"
+                        }
+                    ]
+                },
+                "sfixed32Field": {
+                    "title": "testgen.E2E.sfixed32_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 2147483647,
+                    "minimum": -2147483648
+                },
+                "sfixed32FieldDeprecated": {
+                    "title": "testgen.E2E.sfixed32_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 2147483647,
+                    "minimum": -2147483648
+                },
+                "sfixed32FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.sfixed32_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "sfixed64Field": {
+                    "title": "testgen.E2E.sfixed64_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 9223372036854776000,
+                    "minimum": -9223372036854776000
+                },
+                "sfixed64FieldDeprecated": {
+                    "title": "testgen.E2E.sfixed64_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 9223372036854776000,
+                    "minimum": -9223372036854776000
+                },
+                "sfixed64FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.sfixed64_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 9223372036854776000,
+                        "minimum": -9223372036854776000
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "sint32Field": {
+                    "title": "testgen.E2E.sint32_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 2147483647,
+                    "minimum": -2147483648
+                },
+                "sint32FieldDeprecated": {
+                    "title": "testgen.E2E.sint32_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 2147483647,
+                    "minimum": -2147483648
+                },
+                "sint32FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.sint32_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "sint64Field": {
+                    "title": "testgen.E2E.sint64_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 9223372036854776000,
+                    "minimum": -9223372036854776000
+                },
+                "sint64FieldDeprecated": {
+                    "title": "testgen.E2E.sint64_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 9223372036854776000,
+                    "minimum": -9223372036854776000
+                },
+                "sint64FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.sint64_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 9223372036854776000,
+                        "minimum": -9223372036854776000
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "stringField": {
+                    "title": "testgen.E2E.string_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "string"
+                    ]
+                },
+                "stringFieldDeprecated": {
+                    "title": "testgen.E2E.string_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "string"
+                    ]
+                },
+                "stringFieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.string_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "struct": {
+                    "title": "testgen.E2E.struct",
+                    "description": "",
+                    "deprecated": false,
+                    "additionalProperties": true,
+                    "type": [
+                        "object"
+                    ]
+                },
+                "structDeprecated": {
+                    "title": "testgen.E2E.struct_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "additionalProperties": true,
+                    "type": [
+                        "object"
+                    ]
+                },
+                "structRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.struct_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "additionalProperties": true,
+                        "type": [
+                            "object"
+                        ]
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "subMessage": {
+                    "title": "testgen.E2E.sub_message",
+                    "description": "",
+                    "deprecated": false,
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/testgen.E2E.SubMessage"
+                        }
+                    ]
+                },
+                "subMessageDeprecated": {
+                    "title": "testgen.E2E.sub_message_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/testgen.E2E.SubMessage"
+                        }
+                    ]
+                },
+                "subMessageRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.sub_message_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/testgen.E2E.SubMessage"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "timestamp": {
+                    "title": "testgen.E2E.timestamp",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "string"
+                    ],
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}%3A\\d{2}%3A\\d{2}(?:%2E\\d+)?[A-Z]?(?:[.-](?:08%3A\\d{2}|\\d{2}[A-Z]))?$"
+                },
+                "timestampDeprecated": {
+                    "title": "testgen.E2E.timestamp_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "string"
+                    ],
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}%3A\\d{2}%3A\\d{2}(?:%2E\\d+)?[A-Z]?(?:[.-](?:08%3A\\d{2}|\\d{2}[A-Z]))?$"
+                },
+                "timestampRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.timestamp_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "string"
+                        ],
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}%3A\\d{2}%3A\\d{2}(?:%2E\\d+)?[A-Z]?(?:[.-](?:08%3A\\d{2}|\\d{2}[A-Z]))?$"
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "uint32Field": {
+                    "title": "testgen.E2E.uint32_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 4294967295,
+                    "minimum": 0
+                },
+                "uint32FieldDeprecated": {
+                    "title": "testgen.E2E.uint32_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 4294967295,
+                    "minimum": 0
+                },
+                "uint32FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.uint32_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 4294967295,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "uint64Field": {
+                    "title": "testgen.E2E.uint64_field",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 18446744073709552000,
+                    "minimum": 0
+                },
+                "uint64FieldDeprecated": {
+                    "title": "testgen.E2E.uint64_field_deprecated",
+                    "description": "",
+                    "deprecated": true,
+                    "type": [
+                        "integer"
+                    ],
+                    "maximum": 18446744073709552000,
+                    "minimum": 0
+                },
+                "uint64FieldRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.uint64_field_repeated",
+                        "description": "",
+                        "deprecated": false,
+                        "type": [
+                            "integer"
+                        ],
+                        "maximum": 18446744073709552000,
+                        "minimum": 0
+                    },
+                    "type": [
+                        "array"
+                    ]
+                },
+                "value": {
+                    "title": "testgen.E2E.value",
+                    "description": "",
+                    "deprecated": false
+                },
+                "valueDeprecated": {
+                    "title": "testgen.E2E.value_deprecated",
+                    "description": "",
+                    "deprecated": true
+                },
+                "valueRepeated": {
+                    "items": {
+                        "title": "testgen.E2E.value_repeated",
+                        "description": "",
+                        "deprecated": false
+                    },
+                    "type": [
+                        "array"
+                    ]
+                }
+            },
+            "oneOf": [
+                {
+                    "properties": {
+                        "recursiveOneof": {
+                            "title": "testgen.E2E.recursive_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/testgen.E2E"
+                                }
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "doubleFieldOneof": {
+                            "title": "testgen.E2E.double_field_oneof",
+                            "description": "// Some comment for double field\n",
+                            "deprecated": false,
+                            "type": [
+                                "number"
+                            ],
+                            "maximum": 1.7976931348623157e+308,
+                            "minimum": 5e-324
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "floatFieldOneof": {
+                            "title": "testgen.E2E.float_field_oneof",
+                            "description": "// Some comment for float field\n",
+                            "deprecated": false,
+                            "type": [
+                                "number"
+                            ],
+                            "maximum": 3.4028234663852886e+38,
+                            "minimum": 1.401298464324817e-45
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "int32FieldOneof": {
+                            "title": "testgen.E2E.int32_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 2147483647,
+                            "minimum": -2147483648
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "int64FieldOneof": {
+                            "title": "testgen.E2E.int64_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 9223372036854776000,
+                            "minimum": -9223372036854776000
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "uint32FieldOneof": {
+                            "title": "testgen.E2E.uint32_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 4294967295,
+                            "minimum": 0
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "uint64FieldOneof": {
+                            "title": "testgen.E2E.uint64_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 18446744073709552000,
+                            "minimum": 0
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "sint32FieldOneof": {
+                            "title": "testgen.E2E.sint32_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 2147483647,
+                            "minimum": -2147483648
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "sint64FieldOneof": {
+                            "title": "testgen.E2E.sint64_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 9223372036854776000,
+                            "minimum": -9223372036854776000
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "fixed32FieldOneof": {
+                            "title": "testgen.E2E.fixed32_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 4294967295,
+                            "minimum": 0
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "fixed64FieldOneof": {
+                            "title": "testgen.E2E.fixed64_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 18446744073709552000,
+                            "minimum": 0
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "sfixed32FieldOneof": {
+                            "title": "testgen.E2E.sfixed32_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 2147483647,
+                            "minimum": -2147483648
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "sfixed64FieldOneof": {
+                            "title": "testgen.E2E.sfixed64_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "integer"
+                            ],
+                            "maximum": 9223372036854776000,
+                            "minimum": -9223372036854776000
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "boolFieldOneof": {
+                            "title": "testgen.E2E.bool_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "boolean"
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "stringFieldOneof": {
+                            "title": "testgen.E2E.string_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "bytesFieldOneof": {
+                            "title": "testgen.E2E.bytes_field_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "contentEncoding": "base64"
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "durationOneof": {
+                            "title": "testgen.E2E.duration_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "pattern": "^-?([0-9]*[.])?[0-9]+(s)$"
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "timestampOneof": {
+                            "title": "testgen.E2E.timestamp_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ],
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}%3A\\d{2}%3A\\d{2}(?:%2E\\d+)?[A-Z]?(?:[.-](?:08%3A\\d{2}|\\d{2}[A-Z]))?$"
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "structOneof": {
+                            "title": "testgen.E2E.struct_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "additionalProperties": true,
+                            "type": [
+                                "object"
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "valueOneof": {
+                            "title": "testgen.E2E.value_oneof",
+                            "description": "",
+                            "deprecated": false
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "subMessageOneof": {
+                            "title": "testgen.E2E.sub_message_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/testgen.E2E.SubMessage"
+                                }
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "enumOneof": {
+                            "title": "testgen.E2E.enum_oneof",
+                            "description": "",
+                            "deprecated": false,
+                            "oneOf": [
+                                {
+                                    "deprecated": false,
+                                    "type": [
+                                        "string"
+                                    ],
+                                    "const": "ENUM_UNSPECIFIED"
+                                },
+                                {
+                                    "deprecated": true,
+                                    "type": [
+                                        "string"
+                                    ],
+                                    "const": "ENUM_ONE"
+                                },
+                                {
+                                    "deprecated": false,
+                                    "type": [
+                                        "string"
+                                    ],
+                                    "const": "ENUM_TWO"
+                                }
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "oneofBOption1": {
+                            "title": "testgen.E2E.oneof_b_option_1",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "oneofBOption2": {
+                            "title": "testgen.E2E.oneof_b_option_2",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                },
+                {
+                    "properties": {
+                        "oneofBOption3": {
+                            "title": "testgen.E2E.oneof_b_option_3",
+                            "description": "",
+                            "deprecated": false,
+                            "type": [
+                                "string"
+                            ]
+                        }
+                    },
+                    "type": [
+                        "object"
+                    ]
+                }
+            ],
+            "type": [
+                "object"
+            ]
+        },
+        "testgen.E2E.SubMessage": {
+            "title": "testgen.E2E.SubMessage",
+            "description": "",
+            "deprecated": false,
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "title": "testgen.E2E.SubMessage.foo",
+                    "description": "",
+                    "deprecated": false,
+                    "type": [
+                        "string"
+                    ]
+                },
+                "recursive": {
+                    "title": "testgen.E2E.SubMessage.recursive",
+                    "description": "",
+                    "deprecated": false,
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/testgen.E2E.SubMessage"
+                        }
+                    ]
+                },
+                "recursiveE2e": {
+                    "title": "testgen.E2E.SubMessage.recursive_e2e",
+                    "description": "",
+                    "deprecated": false,
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/testgen.E2E"
+                        }
+                    ]
+                }
+            },
+            "type": [
+                "object"
+            ]
+        }
+    },
+    "title": "testgen",
+    "description": "Code generated by e2e.test. DO NOT EDIT. Schema definitions for testgen.",
+    "oneOf": [
+        {
+            "title": "Configuration file format for: testgen.E2E.",
+            "description": "",
+            "deprecated": false,
+            "additionalProperties": false,
+            "properties": {
+                "@type": {
+                    "type": [
+                        "string"
+                    ],
+                    "const": "type.googleapis.com/testgen.E2E"
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/$defs/testgen.E2E"
+                }
+            ],
+            "type": [
+                "object"
+            ],
+            "required": [
+                "@type"
+            ]
+        },
+        {
+            "title": "Configuration file format for: testgen.E2E.SubMessage.",
+            "description": "",
+            "deprecated": false,
+            "additionalProperties": false,
+            "properties": {
+                "@type": {
+                    "type": [
+                        "string"
+                    ],
+                    "const": "type.googleapis.com/testgen.E2E.SubMessage"
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/$defs/testgen.E2E.SubMessage"
+                }
+            ],
+            "type": [
+                "object"
+            ],
+            "required": [
+                "@type"
+            ]
+        },
+        {
+            "title": "Configuration file format for: testgen.E2E.",
+            "description": "",
+            "deprecated": false,
+            "additionalProperties": false,
+            "properties": {
+                "@type": {
+                    "type": [
+                        "string"
+                    ],
+                    "const": "type.googleapis.com/testgen.E2E"
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/$defs/testgen.E2E"
+                }
+            ],
+            "type": [
+                "object"
+            ],
+            "required": [
+                "@type"
+            ]
+        }
+    ]
+}

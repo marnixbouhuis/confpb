@@ -8,7 +8,8 @@
 
 - `protoc-gen-env`: Automatically map environment variables to protobuf fields in Go code.
 - `protoc-gen-default`: Define default values for protobuf fields directly in your `.proto` files.
-- erging & Overlaying: Combine multiple protobuf files, allowing one to overlay values from another.
+- `protoc-gen-jsonschema`: Generate JSON Schema files for your configuration, enabling IDE autocompletion.
+- Merging & Overlaying: Combine multiple protobuf files, allowing one to overlay values from another.
 - Multi-format Parsing: Seamlessly parse configurations from various formats such as YAML, JSON, binary protobuf, and text protobuf.
 
 ## Why Use `confpb`?
@@ -125,7 +126,7 @@ Installing a prebuilt binary from release is recommended as this binary contains
 
 ### Option 1: Download prebuilt binaries
 1. Head to the [releases page](https://github.com/MarnixBouhuis/confpb/releases) to download the appropriate binary for your platform.
-   - Download both `protoc-gen-env` and `protoc-gen-default`.
+   - Download `protoc-gen-env`, `protoc-gen-default` and `protoc-gen-jsonschema` (depending on what features you require).
 2. Extract the downloaded archives.
 3. Move the binaries to a directory in your `$PATH`, such as `/usr/local/bin` or `/bin`.
 
@@ -133,4 +134,5 @@ Installing a prebuilt binary from release is recommended as this binary contains
 ```bash
 $ go install github.com/marnixbouhuis/confpb/cmd/protoc-gen-default@latest
 $ go install github.com/marnixbouhuis/confpb/cmd/protoc-gen-env@latest
+$ go install github.com/marnixbouhuis/confpb/cmd/protoc-gen-jsonschema@latest
  ```

@@ -7,6 +7,7 @@ rm -rf ./gen/*
 # - proto-gen-go: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 # - protoc-gen-default: download / install from this repo's release page.
 # - protoc-gen-env: download / install from this repo's release page.
+# - protoc-gen-jsonschema: download / install from this repo's release page.
 protoc \
   --go_out=./gen/ \
   --go_opt=paths=source_relative \
@@ -14,6 +15,8 @@ protoc \
   --default_opt=paths=source_relative \
   --env_out=./gen/ \
   --env_opt=paths=source_relative \
+  --jsonschema_out=./gen/ \
+  --jsonschema_opt=paths=source_relative \
   --proto_path=$PWD/../../proto/ \
   --proto_path=./proto/ \
   $(find ./proto/ -name "*.proto")

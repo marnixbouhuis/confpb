@@ -1,0 +1,163 @@
+edition = "2023";
+package testgen;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = ".;main";
+
+enum TestEnum {
+  ENUM_UNSPECIFIED = 0;
+  ENUM_ONE = 1 [deprecated = true];
+  ENUM_TWO = 2;
+}
+
+message E2E {
+  message SubMessage {
+    string foo = 1;
+    SubMessage recursive = 2;
+    E2E recursive_e2e = 3;
+  }
+
+  E2E recursive = 1;
+
+  // Some comment for double field
+  double double_field = 2;
+  // Some comment for float field
+  float float_field = 3;
+  int32 int32_field = 4;
+  int64 int64_field = 5;
+  uint32 uint32_field = 6;
+  uint64 uint64_field = 7;
+  sint32 sint32_field = 8;
+  sint64 sint64_field = 9;
+  fixed32 fixed32_field = 10;
+  fixed64 fixed64_field = 11;
+  sfixed32 sfixed32_field = 12;
+  sfixed64 sfixed64_field = 13;
+  bool bool_field = 14;
+  string string_field = 15;
+  bytes bytes_field = 16;
+  google.protobuf.Duration duration = 17;
+  google.protobuf.Timestamp timestamp = 18;
+  google.protobuf.Struct struct = 19;
+  google.protobuf.Value value = 20;
+  SubMessage sub_message = 21;
+  TestEnum enum = 22;
+
+  // Some comment for deprecated double field
+  double double_field_deprecated = 23 [deprecated = true];
+  // Some comment for deprecated float field
+  float float_field_deprecated = 24 [deprecated = true];
+  int32 int32_field_deprecated = 25 [deprecated = true];
+  int64 int64_field_deprecated = 26 [deprecated = true];
+  uint32 uint32_field_deprecated = 27 [deprecated = true];
+  uint64 uint64_field_deprecated = 28 [deprecated = true];
+  sint32 sint32_field_deprecated = 29 [deprecated = true];
+  sint64 sint64_field_deprecated = 30 [deprecated = true];
+  fixed32 fixed32_field_deprecated = 31 [deprecated = true];
+  fixed64 fixed64_field_deprecated = 32 [deprecated = true];
+  sfixed32 sfixed32_field_deprecated = 33 [deprecated = true];
+  sfixed64 sfixed64_field_deprecated = 34 [deprecated = true];
+  bool bool_field_deprecated = 35 [deprecated = true];
+  string string_field_deprecated = 36 [deprecated = true];
+  bytes bytes_field_deprecated = 37 [deprecated = true];
+  google.protobuf.Duration duration_deprecated = 38 [deprecated = true];
+  google.protobuf.Timestamp timestamp_deprecated = 39 [deprecated = true];
+  google.protobuf.Struct struct_deprecated = 40 [deprecated = true];
+  google.protobuf.Value value_deprecated = 41 [deprecated = true];
+  SubMessage sub_message_deprecated = 42 [deprecated = true];
+  TestEnum enum_deprecated = 43 [deprecated = true];
+
+  // Some comment for repeated double field
+  repeated double double_field_repeated = 44;
+  // Some comment for repeated float field
+  repeated float float_field_repeated = 45;
+  repeated int32 int32_field_repeated = 46;
+  repeated int64 int64_field_repeated = 47;
+  repeated uint32 uint32_field_repeated = 48;
+  repeated uint64 uint64_field_repeated = 49;
+  repeated sint32 sint32_field_repeated = 50;
+  repeated sint64 sint64_field_repeated = 51;
+  repeated fixed32 fixed32_field_repeated = 52;
+  repeated fixed64 fixed64_field_repeated = 53;
+  repeated sfixed32 sfixed32_field_repeated = 54;
+  repeated sfixed64 sfixed64_field_repeated = 55;
+  repeated bool bool_field_repeated = 56;
+  repeated string string_field_repeated = 57;
+  repeated bytes bytes_field_repeated = 58;
+  repeated google.protobuf.Duration duration_repeated = 59;
+  repeated google.protobuf.Timestamp timestamp_repeated = 60;
+  repeated google.protobuf.Struct struct_repeated = 61;
+  repeated google.protobuf.Value value_repeated = 62;
+  repeated SubMessage sub_message_repeated = 63;
+  repeated TestEnum enum_repeated = 64;
+
+  // All possible map key types
+  map<int32, string> map_int32_string = 65;
+  map<int64, string> map_int64_string = 66;
+  map<uint32, string> map_uint32_string = 67;
+  map<uint64, string> map_uint64_string = 68;
+  map<sint32, string> map_sint32_string = 69;
+  map<sint64, string> map_sint64_string = 70;
+  map<fixed32, string> map_fixed32_string = 71;
+  map<fixed64, string> map_fixed64_string = 72;
+  map<sfixed32, string> map_sfixed32_string = 73;
+  map<sfixed64, string> map_sfixed64_string = 74;
+  map<bool, string> map_bool_string = 75;
+  map<string, string> map_string_string = 76;
+
+  // All possible map value types
+  map<string, double> map_string_double = 77;
+  map<string, float> map_string_float = 78;
+  map<string, int32> map_string_int32 = 79;
+  map<string, int64> map_string_int64 = 80;
+  map<string, uint32> map_string_uint32 = 81;
+  map<string, uint64> map_string_uint64 = 82;
+  map<string, sint32> map_string_sint32 = 83;
+  map<string, sint64> map_string_sint64 = 84;
+  map<string, fixed32> map_string_fixed32 = 85;
+  map<string, fixed64> map_string_fixed64 = 86;
+  map<string, sfixed32> map_string_sfixed32 = 87;
+  map<string, sfixed64> map_string_sfixed64 = 88;
+  map<string, bool> map_string_bool = 89;
+  map<string, bytes> map_string_bytes = 90;
+  map<string, TestEnum> map_string_enum = 91;
+  map<string, SubMessage> map_string_message = 92;
+
+  oneof oneof_a {
+    E2E recursive_oneof = 93;
+
+    // Some comment for double field
+    double double_field_oneof = 94;
+    // Some comment for float field
+    float float_field_oneof = 95;
+    int32 int32_field_oneof = 96;
+    int64 int64_field_oneof = 97;
+    uint32 uint32_field_oneof = 98;
+    uint64 uint64_field_oneof = 99;
+    sint32 sint32_field_oneof = 100;
+    sint64 sint64_field_oneof = 101;
+    fixed32 fixed32_field_oneof = 102;
+    fixed64 fixed64_field_oneof = 103;
+    sfixed32 sfixed32_field_oneof = 104;
+    sfixed64 sfixed64_field_oneof = 105;
+    bool bool_field_oneof = 106;
+    string string_field_oneof = 107;
+    bytes bytes_field_oneof = 108;
+    google.protobuf.Duration duration_oneof = 109;
+    google.protobuf.Timestamp timestamp_oneof = 110;
+    google.protobuf.Struct struct_oneof = 111;
+    google.protobuf.Value value_oneof = 112;
+    SubMessage sub_message_oneof = 113;
+    TestEnum enum_oneof = 114;
+  }
+
+  // Make sure multiple oneof groups are supported
+  oneof oneof_b {
+    string oneof_b_option_1 = 115;
+    string oneof_b_option_2 = 116;
+    string oneof_b_option_3 = 117;
+  }
+}
