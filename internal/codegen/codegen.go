@@ -79,7 +79,7 @@ func IterateMessages(messages []*protogen.Message, fn func(message *protogen.Mes
 	for _, message := range messages {
 		if message.Desc.IsMapEntry() {
 			// Message is an auto generated message for map entries, skip it.
-			return nil
+			continue
 		}
 
 		if err := IterateMessages(message.Messages, fn); err != nil {
