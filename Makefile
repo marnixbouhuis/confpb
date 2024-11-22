@@ -11,8 +11,11 @@ dependencies:
 	go mod tidy
 
 .PHONY: install-tools
-install-tools: dependencies
-	cat tools.go | grep _ | awk -F'"' '{print $$2}' | xargs -tI % go install %
+install-tools:
+	(cd tools && \
+		go mod download && \
+		cat tools.go | grep _ | awk -F'"' '{print $$2}' | xargs -tI % go install % \
+	)
 
 .PHONY: lint
 lint: lint-go lint-proto

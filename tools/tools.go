@@ -1,7 +1,7 @@
 //go:build tools
 // +build tools
 
-package confpb
+package tools
 
 import (
 	_ "github.com/bufbuild/buf/cmd/buf"
