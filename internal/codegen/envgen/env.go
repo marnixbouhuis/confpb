@@ -192,11 +192,12 @@ func processNormalFields(g *protogen.GeneratedFile, fields []*envFieldDescriptor
 		g.P("}")
 		g.P("if hasResult {")
 		g.P("fieldsPresent = true")
-		if f.field.Parent.APILevel == gofeaturespb.GoFeatures_API_OPAQUE {
+		switch {
+		case f.field.Parent.APILevel == gofeaturespb.GoFeatures_API_OPAQUE:
 			g.P("x.Set", f.field.GoName, "(result)")
-		} else if codegen.NeedsPointer(f.field) {
+		case codegen.NeedsPointer(f.field):
 			g.P("x.", f.field.GoName, " = &result")
-		} else {
+		default:
 			g.P("x.", f.field.GoName, " = result")
 		}
 		g.P("}")
