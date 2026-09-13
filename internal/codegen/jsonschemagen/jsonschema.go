@@ -362,6 +362,7 @@ func processMessage(root *JSONSchema, message *protogen.Message) error {
 
 	oneofFieldGroups := make(map[string][]*JSONSchema)
 	for _, field := range message.Fields {
+		//nolint:staticcheck // IsWeak is deprecated, it's kept here to give a proper error message / backwards compatibility.
 		if field.Desc.IsWeak() {
 			return fmt.Errorf("field \"%s\" is invalid, weak fields are not supported", field.Desc.FullName())
 		}

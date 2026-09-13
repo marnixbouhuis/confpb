@@ -49,6 +49,7 @@ func processMessage(g *protogen.GeneratedFile, message *protogen.Message) error 
 			continue
 		}
 
+		//nolint:staticcheck // IsWeak is deprecated, it's kept here to give a proper error message / backwards compatibility.
 		if field.Desc.IsWeak() {
 			return fmt.Errorf("field \"%s\" is invalid, weak fields are not supported", field.Desc.FullName())
 		}
