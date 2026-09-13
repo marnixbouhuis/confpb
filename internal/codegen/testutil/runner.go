@@ -38,6 +38,7 @@ var defaultLibraries = []string{
 	"google/protobuf/timestamp.proto",
 	"google/protobuf/struct.proto",
 	"google/protobuf/wrappers.proto",
+	"google/protobuf/go_features.proto",
 	"confpb/v1/field.proto", // Special case, we later auto resolve paths starting with "confpb/" to the proto files in this repo.
 }
 

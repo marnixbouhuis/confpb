@@ -38,3 +38,35 @@ func TestSfixed32Field(t *testing.T) {
 		}
 	`)
 }
+
+func TestSfixed32Field2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, defaultgen.GenerateFile, testDataFS, "testdata/sfixed32_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"testing"
+		)
+
+		func TestDefaults(t *testing.T) {
+			t.Parallel()
+			actual := Sfixed32FromDefault()
+
+			withPresence := int32(456)
+			oneofOption := int32(100)
+			expected := Sfixed32_builder{
+				Normal: int32(123),
+				WithPresence: &withPresence,
+				List: []int32{123, 456, 789},
+				OneofOption: &oneofOption,
+				Map: map[int32]int32{
+					12: 34,
+					56: 78,
+				},
+			}.Build()
+			protoEqual(t, expected, actual)
+		}
+	`)
+}

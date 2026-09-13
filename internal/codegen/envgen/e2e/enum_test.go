@@ -156,3 +156,151 @@ func TestEmbeddedEnumField(t *testing.T) {
 		}
 	`)
 }
+
+func TestEnumField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, envgen.GenerateFile, testDataFS, "testdata/enum_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"github.com/stretchr/testify/assert"
+			"github.com/stretchr/testify/require"
+			"testing"
+		)
+
+		func TestNormalField(t *testing.T) {
+			t.Setenv("ENUM", "ENUM_OPTION_A")
+
+			actual, err := EnumMessageFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, EnumMessage_builder{
+				Normal: Enum_ENUM_OPTION_A,
+			}.Build(), actual)
+		}
+
+		func TestPresenceField(t *testing.T) {
+			t.Setenv("ENUM_WITH_PRESENCE", "ENUM_OPTION_A")
+
+			actual, err := EnumMessageFromEnv()
+			require.NoError(t, err)
+
+			expectedValue := Enum_ENUM_OPTION_A
+			protoEqual(t, EnumMessage_builder{
+				WithPresence: &expectedValue,
+			}.Build(), actual)
+		}
+
+		func TestList(t *testing.T) {
+			t.Setenv("ENUM_LIST_1", "ENUM_OPTION_A")
+			t.Setenv("ENUM_LIST_2", "ENUM_OPTION_B")
+			t.Setenv("ENUM_LIST_3", "ENUM_UNSPECIFIED")
+
+			actual, err := EnumMessageFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, EnumMessage_builder{
+				List: []Enum{Enum_ENUM_OPTION_A, Enum_ENUM_OPTION_B, Enum_ENUM_UNSPECIFIED},
+			}.Build(), actual)
+		}
+
+		func TestOneOfOneOptionSet(t *testing.T) {
+			t.Setenv("ENUM_ONEOF_A", "ENUM_OPTION_A")
+
+			actual, err := EnumMessageFromEnv()
+			require.NoError(t, err)
+
+			option := Enum_ENUM_OPTION_A
+			protoEqual(t, EnumMessage_builder{
+				OneofOptionA: &option,
+			}.Build(), actual)
+		}
+
+		func TestOneOfMultipleSet(t *testing.T) {
+			t.Setenv("ENUM_ONEOF_A", "ENUM_OPTION_B")
+			t.Setenv("ENUM_ONEOF_B", "ENUM_OPTION_B")
+
+			actual, err := EnumMessageFromEnv()
+			assert.Error(t, err)
+			assert.Nil(t, actual)
+		}
+	`)
+}
+
+func TestEmbeddedEnumField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, envgen.GenerateFile, testDataFS, "testdata/enum_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"github.com/stretchr/testify/assert"
+			"github.com/stretchr/testify/require"
+			"testing"
+		)
+
+		func TestNormalField(t *testing.T) {
+			t.Setenv("ENUM", "ENUM_OPTION_A")
+
+			actual, err := EmbeddedEnumMessageFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, EmbeddedEnumMessage_builder{
+				Normal: EmbeddedEnumMessage_ENUM_OPTION_A,
+			}.Build(), actual)
+		}
+
+		func TestPresenceField(t *testing.T) {
+			t.Setenv("ENUM_WITH_PRESENCE", "ENUM_OPTION_A")
+
+			actual, err := EmbeddedEnumMessageFromEnv()
+			require.NoError(t, err)
+
+			expectedValue := EmbeddedEnumMessage_ENUM_OPTION_A
+			protoEqual(t, EmbeddedEnumMessage_builder{
+				WithPresence: &expectedValue,
+			}.Build(), actual)
+		}
+
+		func TestList(t *testing.T) {
+			t.Setenv("ENUM_LIST_1", "ENUM_OPTION_A")
+			t.Setenv("ENUM_LIST_2", "ENUM_OPTION_B")
+			t.Setenv("ENUM_LIST_3", "ENUM_UNSPECIFIED")
+
+			actual, err := EmbeddedEnumMessageFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, EmbeddedEnumMessage_builder{
+				List: []EmbeddedEnumMessage_EmbeddedEnum{
+					EmbeddedEnumMessage_ENUM_OPTION_A,
+					EmbeddedEnumMessage_ENUM_OPTION_B,
+					EmbeddedEnumMessage_ENUM_UNSPECIFIED,
+				},
+			}.Build(), actual)
+		}
+
+		func TestOneOfOneOptionSet(t *testing.T) {
+			t.Setenv("ENUM_ONEOF_A", "ENUM_OPTION_A")
+
+			actual, err := EmbeddedEnumMessageFromEnv()
+			require.NoError(t, err)
+
+			option := EmbeddedEnumMessage_ENUM_OPTION_A
+			protoEqual(t, EmbeddedEnumMessage_builder{
+				OneofOptionA: &option,
+			}.Build(), actual)
+		}
+
+		func TestOneOfMultipleSet(t *testing.T) {
+			t.Setenv("ENUM_ONEOF_A", "ENUM_OPTION_B")
+			t.Setenv("ENUM_ONEOF_B", "ENUM_OPTION_B")
+
+			actual, err := EmbeddedEnumMessageFromEnv()
+			assert.Error(t, err)
+			assert.Nil(t, actual)
+		}
+	`)
+}

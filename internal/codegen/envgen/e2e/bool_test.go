@@ -79,3 +79,75 @@ func TestBoolField(t *testing.T) {
 		}
 	`)
 }
+
+func TestBoolField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, envgen.GenerateFile, testDataFS, "testdata/bool_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"github.com/stretchr/testify/assert"
+			"github.com/stretchr/testify/require"
+			"testing"
+		)
+
+		func TestNormalField(t *testing.T) {
+			t.Setenv("BOOL", "true")
+
+			actual, err := BoolFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Bool_builder{
+				Normal: true,
+			}.Build(), actual)
+		}
+
+		func TestPresenceField(t *testing.T) {
+			t.Setenv("BOOL_WITH_PRESENCE", "true")
+
+			actual, err := BoolFromEnv()
+			require.NoError(t, err)
+
+			expectedValue := true
+			protoEqual(t, Bool_builder{
+				WithPresence: &expectedValue,
+			}.Build(), actual)
+		}
+
+		func TestList(t *testing.T) {
+			t.Setenv("BOOL_LIST_1", "true")
+			t.Setenv("BOOL_LIST_2", "false")
+			t.Setenv("BOOL_LIST_3", "no")
+
+			actual, err := BoolFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Bool_builder{
+				List: []bool{true, false, false},
+			}.Build(), actual)
+		}
+
+		func TestOneOfOneOptionSet(t *testing.T) {
+			t.Setenv("BOOL_ONEOF_A", "false")
+
+			actual, err := BoolFromEnv()
+			require.NoError(t, err)
+
+			option := false
+			protoEqual(t, Bool_builder{
+				OneofOptionA: &option,
+			}.Build(), actual)
+		}
+
+		func TestOneOfMultipleSet(t *testing.T) {
+			t.Setenv("BOOL_ONEOF_A", "false")
+			t.Setenv("BOOL_ONEOF_B", "false")
+
+			actual, err := BoolFromEnv()
+			assert.Error(t, err)
+			assert.Nil(t, actual)
+		}
+	`)
+}

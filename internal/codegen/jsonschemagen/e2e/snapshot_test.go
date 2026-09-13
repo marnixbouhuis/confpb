@@ -18,3 +18,14 @@ func TestSnapshot(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, string(expected), content)
 }
+
+func TestSnapshot2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, jsonschemagen.GenerateFile, testDataFS, "testdata/e2e_2024.proto")
+	content := testutil.GetFileFromGenerationResult(t, res, "e2e_2024.schema.json")
+
+	expected, err := testDataFS.ReadFile("testdata/e2e_2024.schema.json")
+	require.NoError(t, err)
+	require.Equal(t, string(expected), content)
+}

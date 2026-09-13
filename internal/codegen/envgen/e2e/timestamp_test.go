@@ -84,3 +84,79 @@ func TestTimestampField(t *testing.T) {
 		}
 	`)
 }
+
+func TestTimestampField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, envgen.GenerateFile, testDataFS, "testdata/timestamp_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"github.com/stretchr/testify/assert"
+			"github.com/stretchr/testify/require"
+			"google.golang.org/protobuf/types/known/timestamppb"
+			"testing"
+			"time"
+		)
+
+		func TestNormalField(t *testing.T) {
+			t.Setenv("TIMESTAMP", "1985-04-12T23:20:50.52Z")
+
+			actual, err := TimestampFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Timestamp_builder{
+				Normal: timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+			}.Build(), actual)
+		}
+
+		func TestPresenceField(t *testing.T) {
+			t.Setenv("TIMESTAMP_WITH_PRESENCE", "1985-04-12T23:20:50.52Z")
+
+			actual, err := TimestampFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Timestamp_builder{
+				WithPresence: timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+			}.Build(), actual)
+		}
+
+		func TestList(t *testing.T) {
+			t.Setenv("TIMESTAMP_LIST_1", "1985-04-12T23:20:50.52Z")
+			t.Setenv("TIMESTAMP_LIST_2", "1937-01-01T12:00:27.87+00:20")
+			t.Setenv("TIMESTAMP_LIST_3", "1990-12-31T23:59:59Z")
+
+			actual, err := TimestampFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Timestamp_builder{
+				List: []*timestamppb.Timestamp{
+					timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+					timestamppb.New(time.Date(1937, 01, 01, 11, 40, 27, 870000000, time.UTC)),
+					timestamppb.New(time.Date(1990, 12, 31, 23, 59, 59, 0, time.UTC)),
+				},
+			}.Build(), actual)
+		}
+
+		func TestOneOfOneOptionSet(t *testing.T) {
+			t.Setenv("TIMESTAMP_ONEOF_A", "1985-04-12T23:20:50.52Z")
+
+			actual, err := TimestampFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Timestamp_builder{
+				OneofOptionA: timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+			}.Build(), actual)
+		}
+
+		func TestOneOfMultipleSet(t *testing.T) {
+			t.Setenv("TIMESTAMP_ONEOF_A", "1985-04-12T23:20:50.52Z")
+			t.Setenv("TIMESTAMP_ONEOF_B", "1985-04-12T23:20:50.52Z")
+
+			actual, err := TimestampFromEnv()
+			assert.Error(t, err)
+			assert.Nil(t, actual)
+		}
+	`)
+}

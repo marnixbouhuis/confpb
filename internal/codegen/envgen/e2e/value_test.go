@@ -103,3 +103,82 @@ func TestValueField(t *testing.T) {
 		}
 	`)
 }
+
+func TestValueField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, envgen.GenerateFile, testDataFS, "testdata/value_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"github.com/stretchr/testify/assert"
+			"github.com/stretchr/testify/require"
+			"google.golang.org/protobuf/types/known/structpb"
+			"testing"
+		)
+
+		func numberValue(n float64) *structpb.Value {
+			return &structpb.Value{Kind: &structpb.Value_NumberValue{NumberValue: n}}
+		}
+
+		func TestNormalField(t *testing.T) {
+			t.Setenv("VALUE", "123")
+
+			actual, err := ValueFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Value_builder{
+				Normal: numberValue(123),
+			}.Build(), actual)
+		}
+
+		func TestPresenceField(t *testing.T) {
+			t.Setenv("VALUE_WITH_PRESENCE", "123")
+
+			actual, err := ValueFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Value_builder{
+				WithPresence: numberValue(123),
+			}.Build(), actual)
+		}
+
+		func TestList(t *testing.T) {
+			t.Setenv("VALUE_LIST_1", "123")
+			t.Setenv("VALUE_LIST_2", "null")
+			t.Setenv("VALUE_LIST_3", "\"some-string\"")
+
+			actual, err := ValueFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Value_builder{
+				List: []*structpb.Value{
+					numberValue(123),
+					{Kind: &structpb.Value_NullValue{NullValue: structpb.NullValue_NULL_VALUE}},
+					{Kind: &structpb.Value_StringValue{StringValue: "some-string"}},
+				},
+			}.Build(), actual)
+		}
+
+		func TestOneOfOneOptionSet(t *testing.T) {
+			t.Setenv("VALUE_ONEOF_A", "123")
+
+			actual, err := ValueFromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Value_builder{
+				OneofOptionA: numberValue(123),
+			}.Build(), actual)
+		}
+
+		func TestOneOfMultipleSet(t *testing.T) {
+			t.Setenv("VALUE_ONEOF_A", "123")
+			t.Setenv("VALUE_ONEOF_B", "123")
+
+			actual, err := ValueFromEnv()
+			assert.Error(t, err)
+			assert.Nil(t, actual)
+		}
+	`)
+}

@@ -78,3 +78,52 @@ func TestValueField(t *testing.T) {
 		}
 	`)
 }
+
+func TestValueField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, defaultgen.GenerateFile, testDataFS, "testdata/value_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"google.golang.org/protobuf/types/known/structpb"
+			"testing"
+		)
+
+		func TestDefaults(t *testing.T) {
+			t.Parallel()
+			actual := ValueFromDefault()
+
+			numberValue := func(n float64) *structpb.Value {
+				return &structpb.Value{Kind: &structpb.Value_NumberValue{NumberValue: n}}
+			}
+			nullValue := func() *structpb.Value {
+				return &structpb.Value{Kind: &structpb.Value_NullValue{NullValue: structpb.NullValue_NULL_VALUE}}
+			}
+			stringValue := func(s string) *structpb.Value {
+				return &structpb.Value{Kind: &structpb.Value_StringValue{StringValue: s}}
+			}
+			boolValue := func(b bool) *structpb.Value {
+				return &structpb.Value{Kind: &structpb.Value_BoolValue{BoolValue: b}}
+			}
+
+			expected := Value_builder{
+				Normal: numberValue(123),
+				WithPresence: numberValue(123),
+				List: []*structpb.Value{
+					numberValue(123),
+					nullValue(),
+					stringValue("some-string"),
+				},
+				OneofOption: numberValue(123),
+				Map: map[string]*structpb.Value{
+					"key1": numberValue(123),
+					"key2": boolValue(true),
+					"key3": boolValue(false),
+				},
+			}.Build()
+			protoEqual(t, expected, actual)
+		}
+	`)
+}
