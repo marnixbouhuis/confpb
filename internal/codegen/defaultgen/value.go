@@ -9,6 +9,7 @@ import (
 
 	"github.com/marnixbouhuis/confpb/internal/codegen"
 	"google.golang.org/protobuf/compiler/protogen"
+	"google.golang.org/protobuf/types/gofeaturespb"
 	"google.golang.org/protobuf/types/known/structpb"
 )
 
@@ -31,6 +32,11 @@ func setValueForField[T any](g *protogen.GeneratedFile, field *protogen.Field, v
 // setRawValueForField generates a line of code that sets a field of the message struct to a specific value.
 // It expects the value as a raw code string. No conversion is done. The string is printed directly to the output file.
 func setRawValueForField(g *protogen.GeneratedFile, field *protogen.Field, valueStr string) error {
+	if field.Parent.APILevel == gofeaturespb.GoFeatures_API_OPAQUE {
+		g.P("x.Set", field.GoName, "(", valueStr, ")")
+		return nil
+	}
+
 	if codegen.NeedsPointer(field) {
 		valueStr = g.QualifiedGoIdent(runtimePackage.Ident("Pointer")) + "(" + valueStr + ")"
 	}

@@ -42,3 +42,39 @@ func TestTimestampField(t *testing.T) {
 		}
 	`)
 }
+
+func TestTimestampField2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, defaultgen.GenerateFile, testDataFS, "testdata/timestamp_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"google.golang.org/protobuf/types/known/timestamppb"
+			"testing"
+			"time"
+		)
+
+		func TestDefaults(t *testing.T) {
+			t.Parallel()
+			actual := TimestampFromDefault()
+
+			expected := Timestamp_builder{
+				Normal: timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+				WithPresence: timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+				List: []*timestamppb.Timestamp{
+					timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+					timestamppb.New(time.Date(1937, 01, 01, 11, 40, 27, 870000000, time.UTC)),
+					timestamppb.New(time.Date(1990, 12, 31, 23, 59, 59, 0, time.UTC)),
+				},
+				OneofOption: timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+				Map: map[string]*timestamppb.Timestamp{
+					"key1": timestamppb.New(time.Date(1985, 04, 12, 23, 20, 50, 520000000, time.UTC)),
+					"key2": timestamppb.New(time.Date(1937, 01, 01, 11, 40, 27, 870000000, time.UTC)),
+				},
+			}.Build()
+			protoEqual(t, expected, actual)
+		}
+	`)
+}

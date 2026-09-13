@@ -1,8 +1,6 @@
 package scan_test
 
 import (
-	"errors"
-	"fmt"
 	"testing"
 	"time"
 
@@ -21,7 +19,7 @@ func TestDuration(t *testing.T) {
 		args              args
 		expectedResult    *durationpb.Duration
 		expectedHasResult bool
-		expectedErr       error
+		expectedErrMsg    string
 	}{
 		{
 			name: "reading a valid variable from environment (1h30s200ms)",
@@ -33,7 +31,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    durationpb.New(time.Hour + (30 * time.Second) + (200 * time.Millisecond)),
 			expectedHasResult: true,
-			expectedErr:       nil,
+			expectedErrMsg:    "",
 		},
 		{
 			name: "reading a valid variable from environment (180s)",
@@ -45,7 +43,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    durationpb.New(180 * time.Second),
 			expectedHasResult: true,
-			expectedErr:       nil,
+			expectedErrMsg:    "",
 		},
 		{
 			name: "reading a valid variable from environment (negative value: -180s)",
@@ -57,7 +55,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    durationpb.New(-180 * time.Second),
 			expectedHasResult: true,
-			expectedErr:       nil,
+			expectedErrMsg:    "",
 		},
 		{
 			name: "reading a valid variable from environment (zero value: 0)",
@@ -69,7 +67,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    durationpb.New(0),
 			expectedHasResult: true,
-			expectedErr:       nil,
+			expectedErrMsg:    "",
 		},
 		{
 			name: "missing environment variable",
@@ -79,7 +77,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    nil,
 			expectedHasResult: false,
-			expectedErr:       nil,
+			expectedErrMsg:    "",
 		},
 		{
 			name: "empty environment variable",
@@ -91,7 +89,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    nil,
 			expectedHasResult: true,
-			expectedErr:       fmt.Errorf("failed to process environment variable \"FOO\": invalid value \"\", unable to parse value as duration: %w", errors.New("time: invalid duration \"\"")),
+			expectedErrMsg:    "failed to process environment variable \"FOO\": invalid value \"\", unable to parse value as duration: time: invalid duration \"\"",
 		},
 		{
 			name: "invalid duration",
@@ -103,7 +101,7 @@ func TestDuration(t *testing.T) {
 			},
 			expectedResult:    nil,
 			expectedHasResult: true,
-			expectedErr:       fmt.Errorf("failed to process environment variable \"FOO\": invalid value \"this-is-not-a-duration\", unable to parse value as duration: %w", errors.New("time: invalid duration \"this-is-not-a-duration\"")),
+			expectedErrMsg:    "failed to process environment variable \"FOO\": invalid value \"this-is-not-a-duration\", unable to parse value as duration: time: invalid duration \"this-is-not-a-duration\"",
 		},
 	}
 	for _, test := range tests {
@@ -115,7 +113,11 @@ func TestDuration(t *testing.T) {
 			result, hasResult, err := scan.Duration(test.args.envKey)
 			assert.Equal(t, test.expectedResult, result)
 			assert.Equal(t, test.expectedHasResult, hasResult)
-			assert.Equal(t, test.expectedErr, err)
+			if test.expectedErrMsg == "" {
+				assert.NoError(t, err)
+			} else {
+				assert.EqualError(t, err, test.expectedErrMsg)
+			}
 		})
 	}
 }

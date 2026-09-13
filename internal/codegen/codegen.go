@@ -27,7 +27,7 @@ func RunProtocPlugin(generator FileGeneratorFunc) {
 func InvokeGeneratorForFiles(plugin *protogen.Plugin, generator FileGeneratorFunc) error {
 	plugin.SupportedFeatures = uint64(pluginpb.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL | pluginpb.CodeGeneratorResponse_FEATURE_SUPPORTS_EDITIONS)
 	plugin.SupportedEditionsMinimum = descriptorpb.Edition_EDITION_PROTO3
-	plugin.SupportedEditionsMaximum = descriptorpb.Edition_EDITION_2023
+	plugin.SupportedEditionsMaximum = descriptorpb.Edition_EDITION_2024
 
 	for _, file := range plugin.Files {
 		if !file.Generate {

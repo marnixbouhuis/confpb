@@ -10,6 +10,7 @@ import (
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/gofeaturespb"
 )
 
 var (
@@ -157,9 +158,13 @@ func processOneOfGroups(g *protogen.GeneratedFile, oneofFieldGroups map[string][
 			g.P("}")
 			g.P("oneofs[\"", oneofGroupName, "\"] = \"", f.field.GoName, "\"")
 
-			g.P("x.", f.field.Oneof.GoName, " = &", f.field.GoIdent, "{")
-			g.P(f.field.GoName, ": result,") // No need to check for field presence since oneof fields can not have field presence
-			g.P("}")
+			if f.field.Parent.APILevel == gofeaturespb.GoFeatures_API_OPAQUE {
+				g.P("x.Set", f.field.GoName, "(result)")
+			} else {
+				g.P("x.", f.field.Oneof.GoName, " = &", f.field.GoIdent, "{")
+				g.P(f.field.GoName, ": result,") // No need to check for field presence since oneof fields can not have field presence
+				g.P("}")
+			}
 
 			// End for hasResult check
 			g.P("}")
@@ -186,7 +191,9 @@ func processNormalFields(g *protogen.GeneratedFile, fields []*envFieldDescriptor
 		g.P("}")
 		g.P("if hasResult {")
 		g.P("fieldsPresent = true")
-		if codegen.NeedsPointer(f.field) {
+		if f.field.Parent.APILevel == gofeaturespb.GoFeatures_API_OPAQUE {
+			g.P("x.Set", f.field.GoName, "(result)")
+		} else if codegen.NeedsPointer(f.field) {
 			g.P("x.", f.field.GoName, " = &result")
 		} else {
 			g.P("x.", f.field.GoName, " = result")

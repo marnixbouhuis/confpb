@@ -46,7 +46,8 @@ func createCodegenRequestForFiles(t *testing.T, filesFS fs.FS, filesToGenerate [
 	t.Helper()
 
 	parser := protoparse.Parser{
-		IncludeSourceCodeInfo: true,
+		IncludeSourceCodeInfo:     true,
+		AllowExperimentalEditions: true,
 		Accessor: func(filename string) (io.ReadCloser, error) {
 			if strings.HasPrefix(filename, "confpb/") {
 				return protofiles.Files.Open(filename)

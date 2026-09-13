@@ -79,3 +79,75 @@ func TestSfixed32Field(t *testing.T) {
 		}
 	`)
 }
+
+func TestSfixed32Field2024(t *testing.T) {
+	t.Parallel()
+
+	res := testutil.RunGeneratorForFiles(t, envgen.GenerateFile, testDataFS, "testdata/sfixed32_2024.proto")
+	testutil.RunTestInE2ERunner(t, res, `
+		package main
+
+		import (
+			"github.com/stretchr/testify/assert"
+			"github.com/stretchr/testify/require"
+			"testing"
+		)
+
+		func TestNormalField(t *testing.T) {
+			t.Setenv("SFIXED32", "123")
+
+			actual, err := Sfixed32FromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Sfixed32_builder{
+				Normal: 123,
+			}.Build(), actual)
+		}
+
+		func TestPresenceField(t *testing.T) {
+			t.Setenv("SFIXED32_WITH_PRESENCE", "123")
+
+			actual, err := Sfixed32FromEnv()
+			require.NoError(t, err)
+
+			expectedValue := int32(123)
+			protoEqual(t, Sfixed32_builder{
+				WithPresence: &expectedValue,
+			}.Build(), actual)
+		}
+
+		func TestList(t *testing.T) {
+			t.Setenv("SFIXED32_LIST_1", "123")
+			t.Setenv("SFIXED32_LIST_2", "-123")
+			t.Setenv("SFIXED32_LIST_3", "987654321")
+
+			actual, err := Sfixed32FromEnv()
+			require.NoError(t, err)
+
+			protoEqual(t, Sfixed32_builder{
+				List: []int32{123, -123, 987654321},
+			}.Build(), actual)
+		}
+
+		func TestOneOfOneOptionSet(t *testing.T) {
+			t.Setenv("SFIXED32_ONEOF_A", "123")
+
+			actual, err := Sfixed32FromEnv()
+			require.NoError(t, err)
+
+			option := int32(123)
+			protoEqual(t, Sfixed32_builder{
+				OneofOptionA: &option,
+			}.Build(), actual)
+		}
+
+		func TestOneOfMultipleSet(t *testing.T) {
+			t.Setenv("SFIXED32_ONEOF_A", "123")
+			t.Setenv("SFIXED32_ONEOF_B", "123")
+
+			actual, err := Sfixed32FromEnv()
+			assert.Error(t, err)
+			assert.Nil(t, actual)
+		}
+	`)
+}
